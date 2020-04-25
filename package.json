@@ -4,8 +4,7 @@
   "description": "decorated local server for next.js that enables reloads from data changes",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "demo": "./bin/next-remote-watch test/remote/* -r test/next-app/"
+    "test": "./bin/next-remote-watch test/remote/* -r test/next-app/"
   },
   "bin": {
     "next-remote-watch": "./bin/next-remote-watch"
