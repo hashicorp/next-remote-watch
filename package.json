@@ -1,0 +1,23 @@
+{
+  "name": "next-remote-watch",
+  "version": "0.0.0",
+  "description": "decorated local server for next.js that enables reloads from data changes",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "demo": "./bin/next-remote-watch test/remote/* -r test/next-app/"
+  },
+  "bin": {
+    "next-remote-watch": "./bin/next-remote-watch"
+  },
+  "author": "Jeff Escalante",
+  "license": "MPL-2.0",
+  "dependencies": {
+    "commander": "^5.0.0"
+  },
+  "devDependencies": {
+    "next": "^9.3.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}

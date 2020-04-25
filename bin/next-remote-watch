@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+
+const program = require('commander')
+const pkg = require('../package.json')
+const { createServer } = require('http')
+const { parse } = require('url')
+const chokidar = require('chokidar')
+const next = require('next')
+
+program.version(pkg.version)
+program
+  .option('-r, --root [dir]', 'root directory of your nextjs app')
+  .parse(process.argv)
+
+const app = next({ dev: true, dir: program.root || process.cwd() })
+const port = parseInt(process.env.PORT, 10) || 3000
+const handle = app.getRequestHandler()
+
+app.prepare().then(() => {
+  // if directories are provided, watch them for changes and trigger reload
+  if (program.args.length > 0) {
+    chokidar.watch(program.args).on('change', () => {
+      app.hotReloader.send('building')
+      app.hotReloader.send('reloadPage')
+    })
+  }
+
+  createServer((req, res) => {
+    // http endpoint in case any external scripts need to reload
+    if (req.url === '/__mdx_reload') {
+      app.hotReloader.send('building')
+      app.hotReloader.send('reloadPage')
+      res.end('Reload initiated')
+    } else {
+      handle(req, res, parse(req.url, true))
+    }
+  }).listen(port, (err) => {
+    if (err) throw err
+    console.log(`> Ready on http://localhost:${port}`)
+  })
+})
