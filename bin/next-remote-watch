@@ -2,7 +2,9 @@
 
 const program = require('commander')
 const pkg = require('../package.json')
-const { createServer } = require('http')
+const express = require('express')
+const bodyParser = require('body-parser')
+const chalk = require('chalk')
 const { parse } = require('url')
 const chokidar = require('chokidar')
 const next = require('next')
@@ -25,16 +27,28 @@ app.prepare().then(() => {
     })
   }
 
-  createServer((req, res) => {
-    // http endpoint in case any external scripts need to reload
-    if (req.url === '/__mdx_reload') {
-      app.hotReloader.send('building')
-      app.hotReloader.send('reloadPage')
-      res.end('Reload initiated')
-    } else {
-      handle(req, res, parse(req.url, true))
-    }
-  }).listen(port, (err) => {
+  // create an express server
+  const server = express()
+  server.use(bodyParser.json())
+
+  // special handling for mdx reload route
+  server.all('/__next_reload', (req, res) => {
+    // log message if present
+    const msg = req.body.message
+    const color = req.body.color
+    msg && console.log(color ? chalk[color](msg) : msg)
+
+    // reload the nextjs app
+    app.hotReloader.send('building')
+    app.hotReloader.send('reloadPage')
+    res.end('Reload initiated')
+  })
+
+  // handle all other routes with next.js
+  server.all('*', (req, res) => handle(req, res, parse(req.url, true)))
+
+  // fire it up
+  server.listen(port, (err) => {
     if (err) throw err
     console.log(`> Ready on http://localhost:${port}`)
   })
