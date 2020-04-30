@@ -7,7 +7,7 @@ This script replaces `next dev` with a version that adds a couple extra features
 
 The best way to implement is is to use it as an alias for whatever npm script you used to run `next dev` before. For example, you might run it like this in your `package.json`:
 
-```
+```js
 // ...
 "scripts": {
   "start": "next-remote-watch" // this used to be "next dev"
@@ -34,7 +34,7 @@ It's a small, simple utility but offers a really nice developer experience when 
 
 If you'd like to pass in a filepath to be watched, it can be passed directly to the command as such:
 
-```
+```js
 // ...
 "scripts": {
   "start": "next-remote-watch ../some-other-folder/foo"
@@ -45,7 +45,7 @@ You can [use globs](https://github.com/micromatch/picomatch), or pass in multipl
 
 If you want to explicitly set the root path where your nextjs project lives, you can also do this with the `-r` option, as in:
 
-```
+```shell
 $ next-remote-watch some/folder/* -r ../your-next-project
 ```
 
@@ -53,7 +53,7 @@ $ next-remote-watch some/folder/* -r ../your-next-project
 
 If you want changes to be triggered by something other than filesystem events, just send any request to the `__next_reload` route and it will hot reload. If you `POST` json data to the route in the following format, it will reflect some information into the app logs that display in the terminal.
 
-```
+```js
 {
   message: "Here's a test message!",
   color: "red / green / yellow / blue / magenta / cyan / gray / black / white" // optional
