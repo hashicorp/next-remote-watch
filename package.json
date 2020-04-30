@@ -1,6 +1,6 @@
 {
   "name": "next-remote-watch",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "decorated local server for next.js that enables reloads from data changes",
   "main": "index.js",
   "scripts": {
