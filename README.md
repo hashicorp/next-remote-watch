@@ -43,11 +43,15 @@ If you'd like to pass in a filepath to be watched, it can be passed directly to 
 
 You can [use globs](https://github.com/micromatch/picomatch), or pass in multiple, space-separated paths to be watched as well.
 
-If you want to explicitly set the root path where your nextjs project lives, you can also do this with the `-r` option, as in:
 
-```shell
-$ next-remote-watch some/folder/* -r ../your-next-project
-```
+### Optional Flags
+
+| Option | Shorthand | Example | Description | Default |
+| --- | --- | --- | --- | --- |
+| `--root` | `-r` | `--root ./src` | Path to Nextjs project | `process.cwd()` |
+| `--event` | `-e` | `--event add` | Specific event to listen for (`add`, `addDir`, `change`, `unlink`, `unlinkDir` | `change`
+| `--script` | `-s` | `--script ./scripts/sync.js` | Node script to be called on `event` The script will be called with two arguments `path`, `event`.
+
 
 ### The Magic Reload URL
 
