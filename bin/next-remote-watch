@@ -8,10 +8,16 @@ const chalk = require('chalk')
 const { parse } = require('url')
 const chokidar = require('chokidar')
 const next = require('next')
+const { promisify } = require('util')
+const exec = promisify(require('child_process').exec)
+
+const defaultWatchEvent = 'change'
 
 program.version(pkg.version)
 program
   .option('-r, --root [dir]', 'root directory of your nextjs app')
+  .option('-s, --script [file]', 'script to trigger on watch event')
+  .option('-e, --event [name]', `name of event to watch, defaults to ${defaultWatchEvent}`, defaultWatchEvent)
   .parse(process.argv)
 
 const app = next({ dev: true, dir: program.root || process.cwd() })
@@ -21,8 +27,20 @@ const handle = app.getRequestHandler()
 app.prepare().then(() => {
   // if directories are provided, watch them for changes and trigger reload
   if (program.args.length > 0) {
-    chokidar.watch(program.args).on('change', () => {
+    chokidar.watch(program.args).on(program.event, async (path, event = defaultWatchEvent) => {
       app.hotReloader.send('building')
+
+      if (program.script) {
+        try {
+          const { stdout, stderr } = await exec(`node ${program.script} ${path} ${event}`)
+          if (stderr) {
+            console.error(stderr)
+          }
+        } catch (e) {
+          console.error(`remote script failed ${e}`)
+        }
+      }
+
       app.hotReloader.send('reloadPage')
     })
   }
