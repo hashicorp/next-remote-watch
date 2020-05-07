@@ -16,7 +16,7 @@ const defaultWatchEvent = 'change'
 program.version(pkg.version)
 program
   .option('-r, --root [dir]', 'root directory of your nextjs app')
-  .option('-s, --script [file]', 'script to trigger on watch event')
+  .option('-c, --command [cmd]', 'command to trigger on watch event', false)
   .option('-e, --event [name]', `name of event to watch, defaults to ${defaultWatchEvent}`, defaultWatchEvent)
   .parse(process.argv)
 
@@ -30,14 +30,19 @@ app.prepare().then(() => {
     chokidar.watch(program.args).on(program.event, async (path, event = defaultWatchEvent) => {
       app.hotReloader.send('building')
 
-      if (program.script) {
+      if (program.command) {
         try {
-          const { stdout, stderr } = await exec(`node ${program.script} ${path} ${event}`)
+          const { stdout, stderr } = await exec(`${program.command} ${path} ${event}`)
           if (stderr) {
-            console.error(stderr)
+            throw stderr
           }
+
+          console.log(stdout)
+
         } catch (e) {
-          console.error(`remote script failed ${e}`)
+          console.error('Remote command failed')
+          console.error(e)
+          return e
         }
       }
 
