@@ -7,10 +7,11 @@ This script replaces `next dev` with a version that adds a couple extra features
 
 The best way to implement is is to use it as an alias for whatever npm script you used to run `next dev` before. For example, you might run it like this in your `package.json`:
 
-```js
+```diff
 // ...
 "scripts": {
-  "start": "next-remote-watch" // this used to be "next dev"
+-  "start": "next dev"
++  "start": "next-remote-watch"
 }
 ```
 
@@ -50,7 +51,7 @@ You can [use globs](https://github.com/micromatch/picomatch), or pass in multipl
 | --- | --- | --- | --- | --- |
 | `--root` | `-r` | `--root ./src` | Path to Nextjs project | `process.cwd()` |
 | `--event` | `-e` | `--event add` | Specific event to listen for (`add`, `addDir`, `change`, `unlink`, `unlinkDir` | `change`
-| `--script` | `-s` | `--script ./scripts/sync.js` | Node script to be called on `event` The script will be called with two arguments `path`, `event`.
+| `--command` | `-c` | `--command ./scripts/sync.js` | Command to be called on `event` with two arguments (`path`, `event`).
 
 
 ### The Magic Reload URL
