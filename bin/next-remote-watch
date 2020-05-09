@@ -33,12 +33,11 @@ app.prepare().then(() => {
       if (program.command) {
         try {
           const { stdout, stderr } = await exec(`${program.command} ${path} ${event}`)
+          console.log(stdout)
+
           if (stderr) {
             throw stderr
           }
-
-          console.log(stdout)
-
         } catch (e) {
           console.error('Remote command failed')
           console.error(e)
