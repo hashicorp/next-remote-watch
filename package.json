@@ -6,7 +6,10 @@
   "scripts": {
     "test": "./bin/next-remote-watch test/remote/* -r test/next-app/",
     "test:command": "./bin/next-remote-watch test/remote/* -r test/next-app/ -c 'npm run sync --prefix test/next-app --'",
-    "test:event": "./bin/next-remote-watch test/remote/* -r test/next-app/ -e unlink"
+    "test:event": "./bin/next-remote-watch test/remote/* -r test/next-app/ -e unlink",
+    "release:major": "release major && npm publish",
+    "release:minor": "release minor && npm publish",
+    "release:patch": "release patch && npm publish"
   },
   "bin": {
     "next-remote-watch": "./bin/next-remote-watch"
@@ -23,6 +26,7 @@
   "devDependencies": {
     "next": "^9.3.5",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "release": "^6.1.0"
   }
 }
