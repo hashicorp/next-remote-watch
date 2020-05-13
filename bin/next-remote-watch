@@ -53,7 +53,7 @@ app.prepare().then(() => {
               // require your --script script
               const executeFile = require(scriptPath)
 
-              // run the exported function from your --comand script
+              // run the exported function from your --script script
               executeFile(filePathContext, eventContext)
             } catch (e) {
               console.error('Remote script failed')
