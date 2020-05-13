@@ -8,7 +8,6 @@ const chalk = require('chalk')
 const { parse } = require('url')
 const chokidar = require('chokidar')
 const next = require('next')
-const { promisify } = require('util')
 const path = require('path')
 
 const defaultWatchEvent = 'change'
