@@ -50,7 +50,7 @@ You can [use globs](https://github.com/micromatch/picomatch), or pass in multipl
 | ---------- | --------- | ---------------------------- | ------------------------------------------------------------------------------ | --------------- |
 | `--root`   | `-r`      | `--root ./src`               | Path to Nextjs project                                                         | `process.cwd()` |
 | `--event`  | `-e`      | `--event add`                | Specific event to listen for (`add`, `addDir`, `change`, `unlink`, `unlinkDir` | `change`        |
-| `--script` | `-c`      | `--script ./scripts/sync.js` | File to be called on `event` with two arguments (`path`, `event`).             |
+| `--script` | `-s`      | `--script ./scripts/sync.js` | File to be called on `event` with two arguments (`path`, `event`).             |
 
 ### The Magic Reload URL
 
