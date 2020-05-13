@@ -44,15 +44,13 @@ If you'd like to pass in a filepath to be watched, it can be passed directly to 
 
 You can [use globs](https://github.com/micromatch/picomatch), or pass in multiple, space-separated paths to be watched as well.
 
-
 ### Optional Flags
 
-| Option | Shorthand | Example | Description | Default |
-| --- | --- | --- | --- | --- |
-| `--root` | `-r` | `--root ./src` | Path to Nextjs project | `process.cwd()` |
-| `--event` | `-e` | `--event add` | Specific event to listen for (`add`, `addDir`, `change`, `unlink`, `unlinkDir` | `change`
-| `--command` | `-c` | `--command 'node ./scripts/sync.js'` | Command to be called on `event` with two arguments (`path`, `event`).
-
+| Option     | Shorthand | Example                      | Description                                                                    | Default         |
+| ---------- | --------- | ---------------------------- | ------------------------------------------------------------------------------ | --------------- |
+| `--root`   | `-r`      | `--root ./src`               | Path to Nextjs project                                                         | `process.cwd()` |
+| `--event`  | `-e`      | `--event add`                | Specific event to listen for (`add`, `addDir`, `change`, `unlink`, `unlinkDir` | `change`        |
+| `--script` | `-c`      | `--script ./scripts/sync.js` | File to be called on `event` with two arguments (`path`, `event`).             |
 
 ### The Magic Reload URL
 
