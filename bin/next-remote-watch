@@ -25,6 +25,11 @@ program
     `name of event to watch, defaults to ${defaultWatchEvent}`,
     defaultWatchEvent
   )
+  .option(
+    '-p, --polling [name]',
+    `use polling for the watcher, defaults to false`,
+    false
+  )
   .parse(process.argv)
 
 const app = next({ dev: true, dir: program.root || process.cwd() })
@@ -35,7 +40,7 @@ app.prepare().then(() => {
   // if directories are provided, watch them for changes and trigger reload
   if (program.args.length > 0) {
     chokidar
-      .watch(program.args)
+      .watch(program.args, { usePolling: Boolean(program.polling) })
       .on(
         program.event,
         async (filePathContext, eventContext = defaultWatchEvent) => {
