@@ -73,10 +73,11 @@ app.prepare().then(() => {
 
   // create an express server
   const server = express()
-  server.use(bodyParser.json())
 
   // special handling for mdx reload route
-  server.all('/__next_reload', (req, res) => {
+  const reloadRoute = express.Router()
+  reloadRoute.use(bodyParser.json())
+  reloadRoute.all('/', (req, res) => {
     // log message if present
     const msg = req.body.message
     const color = req.body.color
@@ -87,6 +88,8 @@ app.prepare().then(() => {
     app.hotReloader.send('reloadPage')
     res.end('Reload initiated')
   })
+
+  server.use('/__next_reload', reloadRoute)
 
   // handle all other routes with next.js
   server.all('*', (req, res) => handle(req, res, parse(req.url, true)))
