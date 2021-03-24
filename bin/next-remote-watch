@@ -44,7 +44,7 @@ app.prepare().then(() => {
       .on(
         program.event,
         async (filePathContext, eventContext = defaultWatchEvent) => {
-          app.hotReloader.send('building')
+          app.server.hotReloader.send('building')
 
           if (program.script) {
             try {
@@ -66,7 +66,7 @@ app.prepare().then(() => {
             }
           }
 
-          app.hotReloader.send('reloadPage')
+          app.server.hotReloader.send('reloadPage')
         }
       )
   }
@@ -84,8 +84,8 @@ app.prepare().then(() => {
     msg && console.log(color ? chalk[color](msg) : msg)
 
     // reload the nextjs app
-    app.hotReloader.send('building')
-    app.hotReloader.send('reloadPage')
+    app.server.hotReloader.send('building')
+    app.server.hotReloader.send('reloadPage')
     res.end('Reload initiated')
   })
 
