@@ -4,7 +4,8 @@
   "description": "decorated local server for next.js that enables reloads from data changes",
   "main": "index.js",
   "scripts": {
-    "test": "./bin/next-remote-watch test/remote/* -r test/next-app/",
+    "test": "jest",
+    "test:integration": "./bin/next-remote-watch test/remote/* -r test/next-app/",
     "release:major": "release major && npm publish",
     "release:minor": "release minor && npm publish",
     "release:patch": "release patch && npm publish",
@@ -24,7 +25,12 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "next": "^9.3.5",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-node": "^11.1.0",
+    "jest": "^26.6.3",
+    "next": "^10.2.2",
+    "prettier": "^2.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "release": "^6.1.0"
