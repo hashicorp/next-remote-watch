@@ -1,3 +1,3 @@
 module.exports = {
-  setupProgram: require('./setup-program'),
+  createProgram: require('./create'),
 }

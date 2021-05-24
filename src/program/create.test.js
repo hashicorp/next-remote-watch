@@ -1,5 +1,5 @@
 const commander = require('commander')
-const setupProgram = require('./setup-program')
+const create = require('./create')
 const pkg = require('../../package.json')
 const { defaultWatchEvent } = require('../constants')
 
@@ -17,12 +17,12 @@ jest.mock('../constants', () => ({
   defaultWatchEvent: 'mock',
 }))
 
-describe('setupProgram', () => {
+describe('create', () => {
   beforeEach(jest.clearAllMocks)
 
   test('should setup `commander` with the correct configuration', () => {
     process.argv = ['a', 'b']
-    const program = setupProgram()
+    const program = create()
 
     // we want to make sure the program we export is the same commander instance we import
     expect(program).toBe(commander)

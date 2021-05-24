@@ -1,4 +1,4 @@
 module.exports = {
-  startServer: require('./start-server'),
+  startServer: require('./start'),
   requestLogger: require('./logger'),
 }
