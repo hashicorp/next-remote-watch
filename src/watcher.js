@@ -1,6 +1,12 @@
 const chokidar = require('chokidar')
 const { onWatch } = require('./on-watch')
 
+/**
+ * Starts the Chokidar watcher.
+ * @param {Commander} program Commander program
+ * @param {Object} app Custom Next.js Dev Server
+ * @returns chokidar module
+ */
 function startWatcher(program, app) {
   if (!Array.isArray(program.args) || program.args.length === 0) {
     throw new Error(

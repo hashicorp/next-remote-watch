@@ -1,4 +1,4 @@
-const { startWatcher } = require('./start-watcher')
+const { startWatcher } = require('./watcher')
 const { onWatch } = require('./on-watch')
 const chokidar = require('chokidar')
 
