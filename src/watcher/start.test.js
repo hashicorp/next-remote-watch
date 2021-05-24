@@ -1,5 +1,5 @@
-const { startWatcher } = require('./watcher')
-const { onWatch } = require('./on-watch')
+const start = require('./start')
+const onWatch = require('./on-watch')
 const chokidar = require('chokidar')
 
 jest.mock('chokidar', () => {
@@ -13,15 +13,15 @@ jest.mock('chokidar', () => {
   return chokidar
 })
 
-jest.mock('./on-watch.js', () => ({ onWatch: jest.fn() }))
+jest.mock('./on-watch.js', () => jest.fn())
 
-describe('startWatcher', () => {
+describe('start', () => {
   beforeEach(jest.clearAllMocks)
   test('should start the watcher when there are `args` in the program', () => {
     const app = { something: undefined }
     const program = { args: ['src'], event: undefined, polling: undefined }
 
-    startWatcher(program, app)
+    start(program, app)
 
     expect(chokidar.watch).toHaveBeenCalledWith(program.args, {
       usePolling: Boolean(program.polling),
@@ -39,7 +39,7 @@ describe('startWatcher', () => {
     const app = { something: undefined }
     const program = { args: undefined, event: undefined, polling: undefined }
 
-    expect(() => startWatcher(program, app)).toThrowErrorMatchingInlineSnapshot(
+    expect(() => start(program, app)).toThrowErrorMatchingInlineSnapshot(
       `"No arguments provided. Please provide a valid file or directory path to watch for changes."`
     )
   })
@@ -48,7 +48,7 @@ describe('startWatcher', () => {
     const app = { something: undefined }
     const program = { args: [], event: undefined, polling: undefined }
 
-    expect(() => startWatcher(program, app)).toThrowErrorMatchingInlineSnapshot(
+    expect(() => start(program, app)).toThrowErrorMatchingInlineSnapshot(
       `"No arguments provided. Please provide a valid file or directory path to watch for changes."`
     )
   })

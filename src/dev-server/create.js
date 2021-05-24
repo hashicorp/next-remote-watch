@@ -6,8 +6,8 @@ const next = require('next')
  * @param {Commander} program - a Commander program
  * @returns an instance of Next.js Custom Dev Server
  */
-function createApp(program) {
+function createDevServer(program) {
   return next({ dev: true, dir: program.root || process.cwd() })
 }
 
-module.exports = { createApp }
+module.exports = createDevServer

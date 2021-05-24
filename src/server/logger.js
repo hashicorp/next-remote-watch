@@ -7,4 +7,4 @@ function requestLogger(req) {
   msg && console.log(color ? chalk[color](msg) : msg)
 }
 
-module.exports = { requestLogger }
+module.exports = requestLogger

@@ -1,6 +1,6 @@
 const program = require('commander')
-const pkg = require('../package.json')
-const { defaultWatchEvent } = require('./constants')
+const pkg = require('../../package.json')
+const { defaultWatchEvent } = require('../constants')
 
 /**
  * This function passes the different configuration options to the Commander program and return the program itself.
@@ -30,4 +30,4 @@ function setupProgram() {
   return program
 }
 
-module.exports = { setupProgram }
+module.exports = setupProgram

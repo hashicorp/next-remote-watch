@@ -1,9 +1,7 @@
-const { executeCustomScript } = require('./execute-custom-script')
-const { onWatch } = require('./on-watch')
+const scriptLoader = require('./script-loader')
+const onWatch = require('./on-watch')
 
-jest.mock('./execute-custom-script.js', () => ({
-  executeCustomScript: jest.fn(),
-}))
+jest.mock('./script-loader.js', () => jest.fn())
 
 describe('onWatch', () => {
   beforeEach(jest.clearAllMocks)
@@ -15,7 +13,7 @@ describe('onWatch', () => {
 
     onWatch(filePathContext, eventContext, app, program)
 
-    expect(executeCustomScript).toHaveBeenCalledWith(
+    expect(scriptLoader).toHaveBeenCalledWith(
       filePathContext,
       eventContext,
       program

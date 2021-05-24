@@ -1,7 +1,7 @@
 const commander = require('commander')
-const { setupProgram } = require('./program')
-const pkg = require('../package.json')
-const { defaultWatchEvent } = require('./constants')
+const setupProgram = require('./setup-program')
+const pkg = require('../../package.json')
+const { defaultWatchEvent } = require('../constants')
 
 jest.mock('commander', () => {
   return {
@@ -13,7 +13,7 @@ jest.mock('commander', () => {
   }
 })
 
-jest.mock('./constants.js', () => ({
+jest.mock('../constants', () => ({
   defaultWatchEvent: 'mock',
 }))
 

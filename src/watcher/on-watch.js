@@ -1,5 +1,5 @@
-const { defaultWatchEvent } = require('./constants')
-const { executeCustomScript } = require('./execute-custom-script')
+const { defaultWatchEvent } = require('../constants')
+const scriptLoader = require('./script-loader')
 
 /**
  * Callback used within the `on` listener in chokidar. Is executed every time a file is changed under a given `filePath`.
@@ -13,10 +13,10 @@ async function onWatch(filePath, event = defaultWatchEvent, app, program) {
   app.server.hotReloader.send('building')
 
   if (program.script) {
-    executeCustomScript(filePath, event, program)
+    scriptLoader(filePath, event, program)
   }
 
   app.server.hotReloader.send('reloadPage')
 }
 
-module.exports = { onWatch }
+module.exports = onWatch

@@ -33,4 +33,4 @@ function startServer(app) {
   })
 }
 
-module.exports = { startServer }
+module.exports = startServer
