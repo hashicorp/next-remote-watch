@@ -1,4 +1,4 @@
-const commandeProgram = require('commander')
+const program = require('commander')
 const pkg = require('../package.json')
 const { defaultWatchEvent } = require('./constants')
 
@@ -7,8 +7,8 @@ const { defaultWatchEvent } = require('./constants')
  * @returns Commander program
  */
 function setupProgram() {
-  commandeProgram.version(pkg.version)
-  commandeProgram
+  program.version(pkg.version)
+  program
     .option('-r, --root [dir]', 'root directory of your nextjs app')
     .option(
       '-s, --script [path]',
@@ -27,7 +27,7 @@ function setupProgram() {
     )
     .parse(process.argv)
 
-  return commandeProgram
+  return program
 }
 
 module.exports = { setupProgram }
