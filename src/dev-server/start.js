@@ -1,6 +1,6 @@
 const { startServer } = require('../server')
 const { startWatcher } = require('../watcher')
-const createDevServer = require('./create')
+const create = require('./create')
 
 /**
  * Starts the Next.js Custom Dev Server
@@ -8,7 +8,7 @@ const createDevServer = require('./create')
  * @returns the Promise resulting from invoking `app.prepare`
  */
 function startDevServer(program) {
-  const app = createDevServer(program)
+  const app = create(program)
 
   return app.prepare().then(() => {
     startWatcher(program, app)

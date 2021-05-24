@@ -1,5 +1,5 @@
-const startDevServer = require('./start')
-const createDevServer = require('./create')
+const start = require('./start')
+const create = require('./create')
 const { startServer } = require('../server')
 const { startWatcher } = require('../watcher')
 
@@ -7,18 +7,18 @@ jest.mock('../server', () => ({ startServer: jest.fn() }))
 jest.mock('../watcher', () => ({ startWatcher: jest.fn() }))
 jest.mock('./create.js', () => jest.fn())
 
-describe('startDevServer', () => {
+describe('start', () => {
   test('should start the app', async () => {
     const app = {
       prepare: jest.fn().mockResolvedValueOnce(),
     }
     const program = {}
 
-    createDevServer.mockReturnValue(app)
+    create.mockReturnValue(app)
 
-    await startDevServer(program)
+    await start(program)
 
-    expect(createDevServer).toHaveBeenCalledWith(program)
+    expect(create).toHaveBeenCalledWith(program)
 
     expect(startWatcher).toHaveBeenCalledWith(program, app)
     expect(startServer).toHaveBeenCalledWith(app)
