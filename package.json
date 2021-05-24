@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "decorated local server for next.js that enables reloads from data changes",
   "main": "index.js",
+  "engines": {
+    "node": ">= 10"
+  },
   "scripts": {
     "test": "jest",
     "lint": "eslint ./src/**/* --ext js,jsx --quiet",
@@ -26,6 +29,7 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.23",
     "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-node": "^11.1.0",
