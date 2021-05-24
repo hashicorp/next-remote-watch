@@ -1,5 +1,5 @@
-const scriptLoader = require('./script-loader')
 const onWatch = require('./on-watch')
+const scriptLoader = require('./script-loader')
 
 jest.mock('./script-loader.js', () => jest.fn())
 

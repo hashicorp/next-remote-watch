@@ -1,6 +1,8 @@
-const express = require('express')
-const bodyParser = require('body-parser')
 const { parse } = require('url')
+
+const bodyParser = require('body-parser')
+const express = require('express')
+
 const { requestLogger } = require('./logger')
 
 function startServer(app) {

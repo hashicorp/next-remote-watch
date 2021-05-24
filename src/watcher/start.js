@@ -1,4 +1,5 @@
 const chokidar = require('chokidar')
+
 const onWatch = require('./on-watch')
 
 /**

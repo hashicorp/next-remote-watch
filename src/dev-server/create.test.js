@@ -1,5 +1,6 @@
-const create = require('./create')
 const next = require('next')
+
+const create = require('./create')
 
 jest.mock('next', () =>
   jest.fn().mockReturnValue({ prepare: jest.fn().mockResolvedValue() })

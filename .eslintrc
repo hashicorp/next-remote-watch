@@ -1,8 +1,23 @@
 {
-  "extends": ["eslint:recommended", "plugin:node/recommended", "prettier"],
-  "plugins": ["node"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:node/recommended",
+    "plugin:import/recommended",
+    "prettier"
+  ],
+  "plugins": ["node", "import"],
   "env": {
     "node": true,
     "jest": true
+  },
+  "settings": {
+    "import/extensions": [".js", ".jsx"]
+  },
+  "rules": {
+    "import/order": [
+      "error",
+      { "newlines-between": "always", "alphabetize": { "order": "asc" } }
+    ],
+    "import/no-unresolved": [2, { "commonjs": true }]
   }
 }

@@ -1,6 +1,7 @@
-const start = require('./start')
-const onWatch = require('./on-watch')
 const chokidar = require('chokidar')
+
+const onWatch = require('./on-watch')
+const start = require('./start')
 
 jest.mock('chokidar', () => {
   const chokidar = {

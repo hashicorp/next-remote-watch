@@ -1,7 +1,9 @@
 const commander = require('commander')
-const create = require('./create')
+
 const pkg = require('../../package.json')
 const { defaultWatchEvent } = require('../constants')
+
+const create = require('./create')
 
 jest.mock('commander', () => {
   return {

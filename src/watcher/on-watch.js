@@ -1,4 +1,5 @@
 const { defaultWatchEvent } = require('../constants')
+
 const scriptLoader = require('./script-loader')
 
 /**
