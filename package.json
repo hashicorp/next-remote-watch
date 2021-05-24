@@ -28,6 +28,9 @@
     "commander": "^5.0.0",
     "express": "^4.17.1"
   },
+  "peerDependencies": {
+    "next": "9 - 10"
+  },
   "devDependencies": {
     "@types/jest": "^26.0.23",
     "eslint": "^7.26.0",
