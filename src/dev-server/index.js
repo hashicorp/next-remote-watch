@@ -1,4 +1,4 @@
 module.exports = {
-  createDevServer: require('./create-dev-server'),
-  startDevServer: require('./start-app'),
+  createDevServer: require('./create'),
+  startDevServer: require('./start'),
 }
