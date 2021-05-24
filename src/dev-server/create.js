@@ -1,4 +1,3 @@
-// eslint-disable-next-line node/no-unpublished-require
 const next = require('next')
 
 /**
