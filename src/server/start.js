@@ -2,7 +2,7 @@ const express = require('express')
 const { parse } = require('url')
 const reloadController = require('./controllers/reload')
 
-function start(app) {
+const start = (app) => {
   const nextReloadRouter = express.Router()
 
   const port = parseInt(process.env.PORT, 10) || 3000

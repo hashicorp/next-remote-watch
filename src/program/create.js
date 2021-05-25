@@ -7,7 +7,7 @@ const { defaultWatchEvent } = require('../constants')
  * This function passes the different configuration options to the Commander program and return the program itself.
  * @returns Commander program
  */
-function create() {
+const create = () => {
   program.version(pkg.version)
   program
     .option('-r, --root [dir]', 'root directory of your nextjs app')

@@ -10,7 +10,7 @@ const { defaultWatchEvent } = require('../constants')
  * @param {Object} app - Custom Next.js Dev Server
  * @param {Commander} program - Commander program
  */
-async function onWatch(filePath, event = defaultWatchEvent, app, program) {
+const onWatch = async (filePath, event = defaultWatchEvent, app, program) => {
   app.server.hotReloader.send('building')
 
   if (program.script) {

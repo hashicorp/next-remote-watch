@@ -8,7 +8,7 @@ const startWatcher = require('../watcher/start')
  * @param {Commander} program - Commander Program
  * @returns the Promise resulting from invoking `app.prepare`
  */
-function start(program) {
+const start = (program) => {
   const app = create(program)
 
   return app.prepare().then(() => {

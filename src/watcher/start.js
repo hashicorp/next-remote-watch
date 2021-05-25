@@ -8,7 +8,7 @@ const onWatch = require('./on-watch')
  * @param {Object} app Custom Next.js Dev Server
  * @returns chokidar module
  */
-function start(program, app) {
+const start = (program, app) => {
   if (!Array.isArray(program.args) || program.args.length === 0) {
     throw new Error(
       'No arguments provided. Please provide a valid file or directory path to watch for changes.'

@@ -1,6 +1,6 @@
 const chalk = require('chalk')
 
-function requestLogger(req) {
+const requestLogger = (req) => {
   // log message if present
   const msg = req.body.message
   const color = req.body.color

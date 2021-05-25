@@ -1,6 +1,6 @@
 const path = require('path')
 
-function scriptLoader(filePath, event, program) {
+const scriptLoader = (filePath, event, program) => {
   try {
     // find the path of your --script script
     const scriptPath = path.join(process.cwd(), program.script.toString())

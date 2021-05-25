@@ -5,7 +5,7 @@ const createProgram = require('./program/create')
  * The main entry point for the CLI. Creates a Commander program and starts the Next.js Custom Dev Server
  */
 
-function main() {
+const main = () => {
   const program = createProgram()
 
   start(program)

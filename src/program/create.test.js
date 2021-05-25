@@ -8,9 +8,7 @@ const { defaultWatchEvent } = require('../constants')
 jest.mock('commander', () => {
   return {
     version: jest.fn(),
-    option: jest.fn().mockImplementation(function () {
-      return this
-    }),
+    option: jest.fn().mockReturnThis(),
     parse: jest.fn(),
   }
 })
