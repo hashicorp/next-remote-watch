@@ -1,8 +1,8 @@
 const { main } = require('./main')
-const { startDevServer } = require('./dev-server')
+const { startNextDevServer } = require('./next-dev-server')
 const { createProgram } = require('./program')
 
-jest.mock('./dev-server', () => ({ startDevServer: jest.fn() }))
+jest.mock('./next-dev-server', () => ({ startNextDevServer: jest.fn() }))
 jest.mock('./program', () => ({ createProgram: jest.fn() }))
 
 const mockProgram = jest.fn()
@@ -15,6 +15,6 @@ describe('main', () => {
     main()
 
     expect(createProgram).toHaveBeenCalledWith()
-    expect(startDevServer).toHaveBeenCalledWith(mockProgram)
+    expect(startNextDevServer).toHaveBeenCalledWith(mockProgram)
   })
 })
