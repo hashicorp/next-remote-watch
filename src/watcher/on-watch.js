@@ -1,6 +1,6 @@
-const { defaultWatchEvent } = require('../constants')
-
 const scriptLoader = require('./script-loader')
+
+const { defaultWatchEvent } = require('../constants')
 
 /**
  * Callback used within the `on` listener in chokidar. Is executed every time a file is changed under a given `filePath`.

@@ -16,7 +16,11 @@
   "rules": {
     "import/order": [
       "error",
-      { "newlines-between": "always", "alphabetize": { "order": "asc" } }
+      {
+        "newlines-between": "always",
+        "alphabetize": { "order": "asc" },
+        "groups": [["builtin", "external"], "sibling", "parent"]
+      }
     ],
     "import/no-unresolved": [2, { "commonjs": true }]
   }

@@ -1,8 +1,8 @@
 const express = require('express')
 
-const reloadController = require('../controllers/reload')
-
 const createRouter = require('./reload')
+
+const reloadController = require('../controllers/reload')
 
 jest.mock('express', () => ({
   Router: jest.fn().mockReturnValue({

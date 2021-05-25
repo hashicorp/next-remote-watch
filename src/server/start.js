@@ -1,8 +1,8 @@
+const express = require('express')
 const { parse } = require('url')
 
-const express = require('express')
-
 const reloadRouter = require('./router/reload')
+
 
 function start(app) {
   const port = parseInt(process.env.PORT, 10) || 3000

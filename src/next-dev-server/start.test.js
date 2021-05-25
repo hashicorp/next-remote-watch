@@ -1,8 +1,8 @@
-const { startServer } = require('../server')
-const { startWatcher } = require('../watcher')
-
 const create = require('./create')
 const start = require('./start')
+
+const { startServer } = require('../server')
+const { startWatcher } = require('../watcher')
 
 jest.mock('../server', () => ({ startServer: jest.fn() }))
 jest.mock('../watcher', () => ({ startWatcher: jest.fn() }))
