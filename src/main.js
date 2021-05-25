@@ -1,5 +1,5 @@
-const { startNextDevServer } = require('./next-dev-server')
-const { createProgram } = require('./program')
+const start = require('./next-dev-server/start')
+const createProgram = require('./program/create')
 
 /**
  * The main entry point for the CLI. Creates a Commander program and starts the Next.js Custom Dev Server
@@ -8,7 +8,7 @@ const { createProgram } = require('./program')
 function main() {
   const program = createProgram()
 
-  startNextDevServer(program)
+  start(program)
 }
 
 module.exports = {

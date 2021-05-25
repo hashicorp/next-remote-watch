@@ -1,7 +1,7 @@
 const create = require('./create')
 
-const { startServer } = require('../server')
-const { startWatcher } = require('../watcher')
+const startServer = require('../server/start')
+const startWatcher = require('../watcher/start')
 
 /**
  * Starts the Next.js Custom Dev Server
