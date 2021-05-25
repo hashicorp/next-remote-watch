@@ -31,29 +31,31 @@ describe('create', () => {
     expect(commander.parse).toHaveBeenCalledWith(['a', 'b'])
     expect(commander.option).toHaveBeenCalledTimes(4)
 
-    const [first, second, third, fourth] = commander.option.mock.calls
-
-    expect(first).toEqual([
+    expect(commander.option).toHaveBeenNthCalledWith(
+      1,
       '-r, --root [dir]',
-      'root directory of your nextjs app',
-    ])
+      'root directory of your nextjs app'
+    )
 
-    expect(second).toEqual([
+    expect(commander.option).toHaveBeenNthCalledWith(
+      2,
       '-s, --script [path]',
       'path to the script you want to trigger on a watcher event',
-      false,
-    ])
+      false
+    )
 
-    expect(third).toEqual([
+    expect(commander.option).toHaveBeenNthCalledWith(
+      3,
       '-e, --event [name]',
       `name of event to watch, defaults to ${defaultWatchEvent}`,
-      defaultWatchEvent,
-    ])
+      defaultWatchEvent
+    )
 
-    expect(fourth).toEqual([
+    expect(commander.option).toHaveBeenNthCalledWith(
+      4,
       '-p, --polling [name]',
       `use polling for the watcher, defaults to false`,
-      false,
-    ])
+      false
+    )
   })
 })
