@@ -1,6 +1,6 @@
 const express = require('express')
-const reloadController = require('./controllers/reload')
 
+const reloadController = require('./controllers/reload')
 const start = require('./start')
 
 jest.mock('express', () =>

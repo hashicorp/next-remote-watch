@@ -1,5 +1,6 @@
 const express = require('express')
 const { parse } = require('url')
+
 const reloadController = require('./controllers/reload')
 
 const start = (app) => {
