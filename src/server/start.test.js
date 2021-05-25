@@ -1,6 +1,6 @@
 const express = require('express')
+const reloadController = require('./controllers/reload')
 
-const reloadRouter = require('./router/reload')
 const start = require('./start')
 
 jest.mock('express', () =>
@@ -11,11 +11,15 @@ jest.mock('express', () =>
   })
 )
 
-jest.mock('./router/reload.js', () => jest.fn())
+jest.mock('./controllers/reload.js', () => jest.fn())
 
 express.json = jest.fn()
+express.Router = jest
+  .fn()
+  .mockReturnValue({ all: jest.fn().mockImplementation((_, cb) => cb()) })
 
 const server = express()
+const nextReloadRouter = express.Router()
 
 describe('start', () => {
   beforeEach(jest.clearAllMocks)
@@ -35,11 +39,13 @@ describe('start', () => {
 
     expect(app.getRequestHandler).toHaveBeenCalledTimes(1)
     expect(express).toHaveBeenCalledWith()
+    expect(nextReloadRouter.all).toHaveBeenCalledWith('*', expect.any(Function))
+    expect(reloadController).toHaveBeenCalledWith(undefined, undefined, app)
     expect(server.use).toHaveBeenNthCalledWith(1, express.json())
     expect(server.use).toHaveBeenNthCalledWith(
       2,
       '/__next_reload',
-      reloadRouter
+      nextReloadRouter
     )
     // TODO: refine this mock assertion down to the nested callbacks
     expect(server.all).toHaveBeenCalledWith('*', expect.any(Function))

@@ -1,22 +1,24 @@
 const express = require('express')
 const { parse } = require('url')
-
-const reloadRouter = require('./router/reload')
-
+const reloadController = require('./controllers/reload')
 
 function start(app) {
+  const nextReloadRouter = express.Router()
+
   const port = parseInt(process.env.PORT, 10) || 3000
 
-  const handle = app.getRequestHandler()
+  const handler = app.getRequestHandler()
 
   const server = express()
 
   server.use(express.json())
 
-  server.use('/__next_reload', reloadRouter)
+  nextReloadRouter.all('*', (req, res) => reloadController(req, res, app))
+
+  server.use('/__next_reload', nextReloadRouter)
 
   // handle all other routes with next.js
-  server.all('*', (req, res) => handle(req, res, parse(req.url, true)))
+  server.all('*', (req, res) => handler(req, res, parse(req.url, true)))
 
   server.listen(port, (err) => {
     if (err) throw err
