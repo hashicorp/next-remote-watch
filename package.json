@@ -28,7 +28,7 @@
     "express": "^4.17.1"
   },
   "peerDependencies": {
-    "next": "10"
+    "next": ">=10"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",
