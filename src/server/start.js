@@ -1,4 +1,6 @@
 const express = require('express')
+// TODO: parse is deprecated in favour of URL constructor, however by replacing the API, Next throws a weird error that I could not solve yet.
+// eslint-disable-next-line node/no-deprecated-api
 const { parse } = require('url')
 
 const reloadController = require('./controllers/reload')
