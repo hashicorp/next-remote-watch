@@ -6,9 +6,7 @@ const createProgram = require('./program/create')
  */
 
 const main = () => {
-  const program = createProgram()
-
-  start(program)
+  start(createProgram())
 }
 
 module.exports = {
