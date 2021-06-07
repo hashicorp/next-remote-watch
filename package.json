@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "jest",
-    "lint": "eslint ./src/**/* --ext js,jsx --quiet",
+    "lint": "eslint . --ext js,jsx --quiet",
     "test:integration": "./bin/next-remote-watch test/remote/* -r test/next-app/",
     "release:major": "release major && npm publish",
     "release:minor": "release minor && npm publish",
