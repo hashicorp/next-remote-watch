@@ -1,14 +1,16 @@
 #!/usr/bin/env node
 
-const program = require('commander')
-const pkg = require('../package.json')
-const express = require('express')
-const bodyParser = require('body-parser')
 const chalk = require('chalk')
-const { parse } = require('url')
 const chokidar = require('chokidar')
+const program = require('commander')
+const express = require('express')
 const next = require('next')
 const path = require('path')
+// TODO: parse is deprecated in favour of new URL api
+// eslint-disable-next-line node/no-deprecated-api
+const { parse } = require('url')
+
+const pkg = require('../package.json')
 
 const defaultWatchEvent = 'change'
 
@@ -76,7 +78,7 @@ app.prepare().then(() => {
 
   // special handling for mdx reload route
   const reloadRoute = express.Router()
-  reloadRoute.use(bodyParser.json())
+  reloadRoute.use(express.json())
   reloadRoute.all('/', (req, res) => {
     // log message if present
     const msg = req.body.message

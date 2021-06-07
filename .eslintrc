@@ -1,0 +1,44 @@
+{
+  "extends": ["eslint:recommended", "plugin:import/recommended", "prettier"],
+  "plugins": ["import"],
+  "env": {
+    "node": true,
+    "jest": true,
+    "browser": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "import/extensions": [".js", ".jsx"]
+  },
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "alphabetize": { "order": "asc" },
+        "groups": [["builtin", "external"], "sibling", "parent"]
+      }
+    ],
+    "import/no-unresolved": [2, { "commonjs": true }]
+  },
+  "overrides": [
+    {
+      "files": ["bin/*"],
+      "extends": [
+        "eslint:recommended",
+        "plugin:node/recommended",
+        "plugin:import/recommended",
+        "prettier"
+      ],
+      "plugins": ["import", "node"],
+      "env": {
+        "node": true,
+        "jest": true
+      }
+    }
+  ]
+}
