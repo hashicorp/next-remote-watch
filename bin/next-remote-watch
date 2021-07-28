@@ -4,6 +4,7 @@ const chalk = require('chalk')
 const chokidar = require('chokidar')
 const program = require('commander')
 const express = require('express')
+const spawn = require('child_process').spawn
 const next = require('next')
 const path = require('path')
 // TODO: parse is deprecated in favour of new URL api
@@ -22,6 +23,7 @@ program
     'path to the script you want to trigger on a watcher event',
     false
   )
+  .option('-c, --command [cmd]', 'command to execute on a watcher event', false)
   .option(
     '-e, --event [name]',
     `name of event to watch, defaults to ${defaultWatchEvent}`,
@@ -34,6 +36,7 @@ program
   )
   .parse(process.argv)
 
+const shell = process.env.SHELL
 const app = next({ dev: true, dir: program.root || process.cwd() })
 const port = parseInt(process.env.PORT, 10) || 3000
 const handle = app.getRequestHandler()
@@ -47,6 +50,22 @@ app.prepare().then(() => {
         program.event,
         async (filePathContext, eventContext = defaultWatchEvent) => {
           app.server.hotReloader.send('building')
+
+          if (program.command) {
+            // Use spawn here so that we can pipe stdio from the command without buffering
+            spawn(
+              shell,
+              [
+                '-c',
+                program.command
+                  .replace(/\{event\}/gi, filePathContext)
+                  .replace(/\{path\}/gi, eventContext),
+              ],
+              {
+                stdio: 'inherit',
+              }
+            )
+          }
 
           if (program.script) {
             try {
