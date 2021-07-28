@@ -14,7 +14,8 @@
     "release:minor": "release minor && npm publish",
     "release:patch": "release patch && npm publish",
     "test:event": "./bin/next-remote-watch test/remote/* -r test/next-app/ -e unlink",
-    "test:script": "./bin/next-remote-watch test/remote/* -r test/next-app/ -s test/next-app/sync.js"
+    "test:script": "./bin/next-remote-watch test/remote/* -r test/next-app/ -s test/next-app/sync.js",
+    "test:command": "./bin/next-remote-watch test/remote/* -r test/next-app/ -c 'node test/next-app/sync.js {event} {path}'"
   },
   "bin": {
     "next-remote-watch": "./bin/next-remote-watch"
