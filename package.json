@@ -6,6 +6,10 @@
   "engines": {
     "node": ">= 10"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hashicorp/next-remote-watch.git"
+  },
   "scripts": {
     "test": "jest",
     "lint": "eslint . --ext js,jsx --quiet",
