@@ -1,35 +1,16 @@
 {
   "name": "next-remote-watch",
-  "version": "1.0.0",
   "description": "decorated local server for next.js that enables reloads from data changes",
-  "main": "index.js",
-  "engines": {
-    "node": ">= 10"
-  },
-  "scripts": {
-    "test": "jest",
-    "lint": "eslint . --ext js,jsx --quiet",
-    "test:integration": "./bin/next-remote-watch test/remote/* -r test/next-app/",
-    "release:major": "release major && npm publish",
-    "release:minor": "release minor && npm publish",
-    "release:patch": "release patch && npm publish",
-    "test:event": "./bin/next-remote-watch test/remote/* -r test/next-app/ -e unlink",
-    "test:script": "./bin/next-remote-watch test/remote/* -r test/next-app/ -s test/next-app/sync.js",
-    "test:command": "./bin/next-remote-watch test/remote/* -r test/next-app/ -c 'node test/next-app/sync.js {event} {path}'"
-  },
+  "version": "1.0.0",
+  "author": "Jeff Escalante",
   "bin": {
     "next-remote-watch": "./bin/next-remote-watch"
   },
-  "author": "Jeff Escalante",
-  "license": "MPL-2.0",
   "dependencies": {
     "chalk": "^4.0.0",
     "chokidar": "^3.4.0",
     "commander": "^5.0.0",
     "express": "^4.17.1"
-  },
-  "peerDependencies": {
-    "next": ">=10"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",
@@ -43,5 +24,28 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "release": "^6.1.0"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "license": "MPL-2.0",
+  "main": "index.js",
+  "peerDependencies": {
+    "next": ">=10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hashicorp/next-remote-watch.git"
+  },
+  "scripts": {
+    "lint": "eslint . --ext js,jsx --quiet",
+    "release:major": "release major && npm publish",
+    "release:minor": "release minor && npm publish",
+    "release:patch": "release patch && npm publish",
+    "test": "jest",
+    "test:command": "./bin/next-remote-watch test/remote/* -r test/next-app/ -c 'node test/next-app/sync.js {event} {path}'",
+    "test:event": "./bin/next-remote-watch test/remote/* -r test/next-app/ -e unlink",
+    "test:integration": "./bin/next-remote-watch test/remote/* -r test/next-app/",
+    "test:script": "./bin/next-remote-watch test/remote/* -r test/next-app/ -s test/next-app/sync.js"
   }
 }
