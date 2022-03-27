@@ -37,9 +37,11 @@ program
   .parse(process.argv)
 
 const shell = process.env.SHELL
-const app = next({ dev: true, dir: program.root || process.cwd() })
 const port = parseInt(process.env.PORT, 10) || 3000
+const app = next({ dev: true, dir: program.root || process.cwd(), hostname: 'localhost', port })
 const handle = app.getRequestHandler()
+const handle = app.getRequestHandler()
+
 
 app.prepare().then(() => {
   // if directories are provided, watch them for changes and trigger reload
