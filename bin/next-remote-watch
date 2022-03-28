@@ -37,8 +37,16 @@ program
   .parse(process.argv)
 
 const shell = process.env.SHELL
-const app = next({ dev: true, dir: program.root || process.cwd() })
 const port = parseInt(process.env.PORT, 10) || 3000
+const hostname = process.env.HOSTNAME || 'localhost'
+const app = next({
+  dev: true,
+  dir: program.root || process.cwd(),
+  // When using middlewares in NextJS 12, `hostname` and `port` must be provided
+  // (https://nextjs.org/docs/advanced-features/custom-server)
+  port,
+  hostname,
+})
 const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
